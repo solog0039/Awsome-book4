@@ -50,3 +50,15 @@ form.addEventListener('submit', (e) => {
   const author = document.getElementById('author').value;
   myBookCollection.addBook(title, author);
 });
+
+const bookListElement = document.getElementById('bookList');
+bookListElement.addEventListener('click', (e) => {
+  if (e.target.classList.contains('removeButton')) {
+    const { index } = e.target.dataset;
+    myBookCollection.bookList.splice(index, 1);
+    localStorage.setItem('bookCollection', JSON.stringify(myBookCollection.bookList));
+    myBookCollection.displayBooks();
+  }
+});
+
+myBookCollection.displayBooks();
